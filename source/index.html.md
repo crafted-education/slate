@@ -3,13 +3,9 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='mailto:matt@inscribeapp.com'>Sign Up for a Developer Credentials</a>
 
 includes:
   - errors
@@ -19,221 +15,132 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Welcome to the InScribe API! You can use our API to access InScribe API endpoints. The API can be used to retrieve communities, questions, posts, and answers.
 
 # Authentication
 
+Please contact InScribe (matt@inscribeapp.com) to receive credentials needed to get an Authentication Token.
+
+### HTTP Request
+
+To get an authentication token:
+
+`GET https://inscribe.education/oauth2/token`
+
+### Header Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+Authorization | none | A "Basic access authentication" authorization header. Simply a username:password encoded with Base64 and formatted within the Authorization header as "Basic BASE64ENCODEDCREDSHERE"
+
+
 > To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "https://inscribe.education/oauth2/token"
+  -H "Authorization: Basic BASE64TOKEN"
 ```
 
-```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
+> Make sure to replace `BASE64TOKEN` with your API key.
+
+
+> The above command returns json formatted as follows:
+
+```json
+{
+"token_type": "bearer",
+"access_token": "eyJhbGciOiJIUzI19St9zOJjDLH2p4oyGQahlkxb9ahlLu4kcXQXs..."
+}
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+InScribe uses API credentials to get Authentication tokens which allow access to the API. You can request api credentials from InScribe at matt@inscribeapp.com
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+InScribe expects the API Token (from the authentication call) to be included in all API requests to the server in a header that looks like the following:
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: Bearer TOKENHERE`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>TOKENHERE</code> with the token you received from the authentication call.
 </aside>
 
-# Kittens
+# Communities
 
-## Get All Kittens
+## Get All Communities
 
-```ruby
-require 'kittn'
+`GET https://inscribe.education/api/v1/communities`
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+### Header Parameters
 
-```python
-import kittn
+Parameter | Default | Description
+--------- | ------- | -----------
+Authorization | none | Bearer TOKENHERE
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+curl "https://inscribe.education/api/v1/communities"
+  -H "Authorization: Bearer TOKENHERE"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
+    {
+        "id": 4795407775301632,
+        "name": "American Government",
+        "ownerType": "system",
+        "ownerId": 1,
+        "creatorId": 1,
+        "organization": "crafted",
+        "createdDate": "2018-06-22T08:23:57-06:00",
+        "lastModified": "2018-06-22T08:23:57-06:00"
+    },
+    {
+        "id": 6538074649526272,
+        "name": "Math",
+        "ownerType": "system",
+        "ownerId": 1,
+        "creatorId": 1,
+        "organization": "crafted",
+        "createdDate": "2018-06-22T08:23:57-06:00",
+        "lastModified": "2018-06-22T08:23:57-06:00"
+    }
 ]
 ```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves a specific community.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://inscribe.education/api/v1/communities/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | The ID of the community to retrieve
 
-## Delete a Specific Kitten
+## Delete a Specific Communities
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
 
 ```shell
-curl "http://example.com/api/kittens/2"
+curl "https://inscribe.education/api/v1/communities/6538074649526272"
   -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+  -H "Authorization: Bearer TOKENHERE"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
-}
+        "id": 6538074649526272,
+        "name": "Math",
+        "ownerType": "system",
+        "ownerId": 1,
+        "creatorId": 1,
+        "organization": "crafted",
+        "createdDate": "2018-06-22T08:23:57-06:00",
+        "lastModified": "2018-06-22T08:23:57-06:00"
+    }
 ```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
