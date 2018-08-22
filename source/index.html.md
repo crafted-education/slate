@@ -140,7 +140,7 @@ curl "https://inscribe.education/api/v1/communities"
         "ownerId": 1,
         "creatorId": 1,
         "organization": "crafted",
-        "createdDate": "2018-06-22T08:23:57-06:00",
+        "createdDate": "2018-06-22:2T08:23:57-06:00",
         "lastModified": "2018-06-22T08:23:57-06:00"
     }
 ]
@@ -149,13 +149,13 @@ This endpoint retrieves a specific community.
 
 ### HTTP Request
 
-`GET https://inscribe.education/api/v1/communities/<ID>`
+`GET https://inscribe.education/api/v1/communities`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the community to retrieve
+none
 
 ## Get a Specific Community
 
@@ -180,3 +180,14 @@ curl "https://inscribe.education/api/v1/communities/6538074649526272"
         "lastModified": "2018-06-22T08:23:57-06:00"
     }
 ```
+
+### HTTP Request
+
+`GET https://inscribe.education/api/v1/communities/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the community to retrieve
+
