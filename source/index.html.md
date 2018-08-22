@@ -17,13 +17,49 @@ search: true
 
 Welcome to the InScribe API! You can use our API to access InScribe API endpoints. The API can be used to retrieve communities, questions, posts, and answers.
 
-# Authentication
+# Application Authentication
 
-Please contact InScribe (matt@inscribeapp.com) to receive credentials needed to get an Authentication Token.
+Application-only authentication is a form of authentication where an application makes API requests on its own behalf, without the user context. This method is useful for getting general information (as opposed to performing actions that would require a user).
+
+To use this method, you need to use a bearer token. You can generate a bearer token by passing your consumer key and secret through the POST oauth2/token endpoint. 
+
+Please contact InScribe (matt@inscribeapp.com) to receive a consumer key and secret. 
+
+## Auth Flow
+The application-only auth flow follows these steps:
+
+* An application encodes its consumer key and secret into a specially encoded set of credentials.
+* An application makes a request to the POST oauth2/token endpoint to exchange these credentials for a bearer token.
+* When accessing the REST API, the application uses the bearer token to authenticate.
+
+
+### Note: Tokens are passwords
+Keep in mind that the consumer key & secret, bearer token credentials, and the bearer token itself grant access to make requests on behalf of an application. These values should be considered as sensitive as passwords, and must not be shared or distributed to untrusted parties.
+
+### Note: SSL required
+All requests (both to obtain and use the tokens) must use HTTPS endpoints. 
+
+
+## Issuing application-only requests
+### Step 1: Encode consumer key and secret
+
+1. Concatenate the encoded consumer key, a colon character ”:”, and the encoded consumer secret into a single string.
+2. Base64 encode the string from the previous step.
+
+### Step 2: Obtain a bearer token
+
+The value calculated in step 1 must be exchanged for a bearer token by issuing a request to POST oauth2/token:
+
+* The request must be a HTTP POST request.
+* The request must include an Authorization header with the value of Basic <base64 encoded value from step 1>.
+* The request must include a Content-Type header with the value of application/x-www-form-urlencoded;charset=UTF-8.
+
+### Step 3: Authenticate API requests with the bearer token
+The bearer token may be used to issue requests to API endpoints which support application-only auth. To use the bearer token, construct a normal HTTPS request and include an Authorization header with the value of Bearer <base64 bearer token value from step 2>. 
 
 ### HTTP Request
 
-To get an authentication token:
+To get an authentication bearer token:
 
 `GET https://inscribe.education/oauth2/token`
 
@@ -121,12 +157,12 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the community to retrieve
 
-## Delete a Specific Communities
+## Get a Specific Community
 
 
 ```shell
 curl "https://inscribe.education/api/v1/communities/6538074649526272"
-  -X DELETE
+  -X GET
   -H "Authorization: Bearer TOKENHERE"
 ```
 
