@@ -145,19 +145,23 @@ curl "https://inscribe.education/api/v1/communities"
     }
 ]
 ```
+
+
+## Get a Specific Community
+
 This endpoint retrieves a specific community.
 
 ### HTTP Request
 
-`GET https://inscribe.education/api/v1/communities`
+`GET https://inscribe.education/api/v1/communities/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-none
+ID | The ID of the community to retrieve
 
-## Get a Specific Community
+
 
 
 ```shell
@@ -181,13 +185,119 @@ curl "https://inscribe.education/api/v1/communities/6538074649526272"
     }
 ```
 
-### HTTP Request
 
-`GET https://inscribe.education/api/v1/communities/<ID>`
+# Conversation Previews
+
+Conversations contain two types: 'question' and 'sharepost'. Both are returned in generalized json structure, but the types are returned (in "conversationType") in case there is a need to treat them differently.
+
+## Get All ConversationPreviews in a Community
+
+`GET https://inscribe.education/api/<organization>/v1/communities/<communityid>/conversationpreviews`
+
+### Header Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+Authorization | none | Bearer TOKENHERE
+Range | none | entities=&lt;range-start&gt;-&lt;range-end&gt;
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the community to retrieve
+organization | The short name (key) for your organization
+communityid | The identifier for the community in which you are getting conversationpreviews
+
+
+
+
+```shell
+curl "https://inscribe.education/api/crafted/v1/communities/12341234/conversationpreviews"
+  -H "Authorization: Bearer TOKENHERE"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "title": "How do I make changes to my FAFSA form?",
+        "bodyText": "How do I make changes to my FAFSA form? I made a mistake when I submitted the FAFSA form. How do I make changes?",
+        "authorName": "MS",
+        "conversationType": "question",
+        "upVotesCount": 1,
+        "viewsCount": 19,
+        "datePosted": "2018-01-31T14:53:02Z",
+        "dateEdited": "0001-01-01T00:00:00Z"
+    },
+    {
+        "title": "My techniques for success in online classes",
+        "bodyText": "I've found that being organized and prepared has really helped.",
+        "authorName": "JG",
+        "conversationType": "sharepost",
+        "upVotesCount": 0,
+        "viewsCount": 16,
+        "datePosted": "2018-01-31T15:09:34Z",
+        "dateEdited": "0001-01-01T00:00:00Z"
+    }
+]
+
+```
+
+# Resource Previews
+## Get all ResourcePreviews
+
+This endpoint retrieves resourcepreviews in a community
+
+### HTTP Request
+
+`GET https://inscribe.education/api/<organization>/v1/communities/<communityid>/conversationpreviews`
+
+### Header Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+Authorization | none | Bearer TOKENHERE
+Range | none | entities=&lt;range-start&gt;-&lt;range-end&gt;
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the community to retrieve resourcepreviews from
+
+
+
+
+```shell
+curl "https://inscribe.education/api/crafted/v1/communities/6538074649526272/resourcepreviews"
+  -X GET
+  -H "Authorization: Bearer TOKENHERE"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "title": "Welcome to your Q&A Community",
+        "previewImageURL": "",
+        "authorName": "MS",
+        "upVotesCount": 0,
+        "viewsCount": 9,
+        "datePosted": "2018-01-30T22:29:58Z",
+        "dateEdited": "2018-09-05T21:00:11Z"
+    },
+    {
+        "title": "FAFSA Overview",
+        "previewImageURL": "",
+        "authorName": "MS",
+        "upVotesCount": 0,
+        "viewsCount": 8,
+        "datePosted": "2018-01-31T14:48:45Z",
+        "dateEdited": "2018-09-07T19:25:08Z"
+    }
+]
+```
+
 
