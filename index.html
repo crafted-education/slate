@@ -351,7 +351,7 @@ curl <span class="s2">"https://inscribe.education/oauth2/token"</span>
 You must replace <code>TOKENHERE</code> with the token you received from the authentication call.
 </aside>
 <h1 id='communities'>Communities</h1><h2 id='get-all-communities'>Get All Communities</h2>
-<p><code>GET https://inscribe.education/api/v1/communities</code></p>
+<p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities</code></p>
 <h3 id='header-parameters-2'>Header Parameters</h3>
 <table><thead>
 <tr>
@@ -366,7 +366,19 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <td>Bearer TOKENHERE</td>
 </tr>
 </tbody></table>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/v1/communities"</span>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>organization</td>
+<td>Your organization name key</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/&lt;organization&gt;/v1/communities"</span>
   -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
 </code></pre>
 <blockquote>
@@ -397,8 +409,8 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 </span></code></pre><h2 id='get-a-specific-community'>Get a Specific Community</h2>
 <p>This endpoint retrieves a specific community.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://inscribe.education/api/v1/communities/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -406,11 +418,15 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 </tr>
 </thead><tbody>
 <tr>
+<td>organization</td>
+<td>Your organization name key</td>
+</tr>
+<tr>
 <td>ID</td>
 <td>The ID of the community to retrieve</td>
 </tr>
 </tbody></table>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/v1/communities/6538074649526272"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/&lt;organization&gt;/v1/communities/6538074649526272"</span>
   -X GET
   -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
 </code></pre>
@@ -450,7 +466,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <td>entities=&lt;range-start&gt;-&lt;range-end&gt;</td>
 </tr>
 </tbody></table>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -518,13 +534,17 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <td>entities=&lt;range-start&gt;-&lt;range-end&gt;</td>
 </tr>
 </tbody></table>
-<h3 id='url-parameters-3'>URL Parameters</h3>
+<h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>organization</td>
+<td>Your organization name key</td>
+</tr>
 <tr>
 <td>ID</td>
 <td>The ID of the community to retrieve resourcepreviews from</td>
