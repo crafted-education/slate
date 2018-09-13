@@ -105,7 +105,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 
 ## Get All Communities
 
-`GET https://inscribe.education/api/v1/communities`
+`GET https://inscribe.education/api/<organization>/v1/communities`
 
 ### Header Parameters
 
@@ -113,9 +113,16 @@ Parameter | Default | Description
 --------- | ------- | -----------
 Authorization | none | Bearer TOKENHERE
 
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+organization | Your organization name key
+
+
 
 ```shell
-curl "https://inscribe.education/api/v1/communities"
+curl "https://inscribe.education/api/<organization>/v1/communities"
   -H "Authorization: Bearer TOKENHERE"
 ```
 
@@ -153,19 +160,20 @@ This endpoint retrieves a specific community.
 
 ### HTTP Request
 
-`GET https://inscribe.education/api/v1/communities/<ID>`
+`GET https://inscribe.education/api/<organization>/v1/communities/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
+organization | Your organization name key
 ID | The ID of the community to retrieve
 
 
 
 
 ```shell
-curl "https://inscribe.education/api/v1/communities/6538074649526272"
+curl "https://inscribe.education/api/<organization>/v1/communities/6538074649526272"
   -X GET
   -H "Authorization: Bearer TOKENHERE"
 ```
@@ -264,6 +272,7 @@ Range | none | entities=&lt;range-start&gt;-&lt;range-end&gt;
 
 Parameter | Description
 --------- | -----------
+organization | Your organization name key
 ID | The ID of the community to retrieve resourcepreviews from
 
 
