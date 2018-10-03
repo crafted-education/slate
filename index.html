@@ -446,7 +446,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 </span></code></pre><h1 id='conversation-previews'>Conversation Previews</h1>
 <p>Conversations contain two types: &#39;question&#39; and &#39;sharepost&#39;. Both are returned in generalized json structure, but the types are returned (in &quot;conversationType&quot;) in case there is a need to treat them differently.</p>
 <h2 id='get-all-conversationpreviews-in-a-community'>Get All ConversationPreviews in a Community</h2>
-<p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/conversationpreviews</code></p>
+<p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/conversationpreviews?channelSlugName=&lt;channelSlugName&gt;</code></p>
 <h3 id='header-parameters-3'>Header Parameters</h3>
 <table><thead>
 <tr>
@@ -481,6 +481,10 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <td>communityid</td>
 <td>The identifier for the community in which you are getting conversationpreviews</td>
 </tr>
+<tr>
+<td>channelSlugName</td>
+<td>Querystring param. Using the slug name of the channel the results can be filtered</td>
+</tr>
 </tbody></table>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/crafted/v1/communities/12341234/conversationpreviews"</span>
   -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
@@ -514,7 +518,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 </span></code></pre><h1 id='resource-previews'>Resource Previews</h1><h2 id='get-all-resourcepreviews'>Get all ResourcePreviews</h2>
 <p>This endpoint retrieves resourcepreviews in a community</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/conversationpreviews</code></p>
+<p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/conversationpreviews?channelSlugName=&lt;channelSlugName&gt;</code></p>
 <h3 id='header-parameters-4'>Header Parameters</h3>
 <table><thead>
 <tr>
@@ -548,6 +552,10 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <tr>
 <td>ID</td>
 <td>The ID of the community to retrieve resourcepreviews from</td>
+</tr>
+<tr>
+<td>channelSlugName</td>
+<td>Querystring param. Using the slug name of the channel the results can be filtered</td>
 </tr>
 </tbody></table>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/crafted/v1/communities/6538074649526272/resourcepreviews"</span>
