@@ -516,7 +516,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 </code></pre><h1 id='user-39-s-conversation-previews'>User&#39;s Conversation Previews</h1>
 <p>Conversations contain two types: &#39;question&#39; and &#39;sharepost&#39;. Both are returned in generalized json structure, but the types are returned (in &quot;conversationType&quot;) in case there is a need to treat them differently.</p>
 <h2 id='get-all-conversationpreviews-in-a-community-for-a-user'>Get All ConversationPreviews in a Community for a User</h2>
-<p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/users/&lt;userid&gt;/conversationpreviews?channelSlugName=&lt;channelSlugName&gt;</code></p>
+<p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/users/&lt;userid&gt;/conversationpreviews</code></p>
 <h3 id='header-parameters-4'>Header Parameters</h3>
 <table><thead>
 <tr>
@@ -556,8 +556,12 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <td>The user identifier context in which the conversation previews are relevant</td>
 </tr>
 <tr>
+<td>topicSlug</td>
+<td>[optional] Querystring param. The topic(s) in which results should be filtered. If not provided, results will not be filtered by topic.</td>
+</tr>
+<tr>
 <td>channelSlugName</td>
-<td>Querystring param. Using the slug name of the channel the results can be filtered</td>
+<td>[optional] Querystring param. Using the slug name of the channel the results can be filtered. If not provided, results will be limitted to channels in which the user has subscribed.</td>
 </tr>
 </tbody></table>
 <h3 id='example-4'>Example</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/crafted/v1/communities/12341234/users/1324134/conversationpreviews"</span>
@@ -632,8 +636,12 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <td>The identifier for the community in which you are getting conversationpreviews</td>
 </tr>
 <tr>
+<td>topicSlug</td>
+<td>[optional] Querystring param. The topic(s) in which results should be filtered</td>
+</tr>
+<tr>
 <td>channelSlugName</td>
-<td>Querystring param. Using the slug name of the channel the results can be filtered</td>
+<td>[optional] Querystring param. Using the slug name of the channel the results can be filtered</td>
 </tr>
 </tbody></table>
 <h3 id='example-5'>Example</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/crafted/v1/communities/12341234/conversationpreviews"</span>
