@@ -101,6 +101,9 @@ InScribe expects the API Token (from the authentication call) to be included in 
 You must replace <code>TOKENHERE</code> with the token you received from the authentication call.
 </aside>
 
+
+
+
 # Communities
 
 ## Get All Communities
@@ -120,6 +123,7 @@ Parameter | Description
 organization | Your organization name key
 
 
+### Example
 
 ```shell
 curl "https://inscribe.education/api/<organization>/v1/communities"
@@ -171,6 +175,7 @@ ID | The ID of the community to retrieve
 
 
 
+### Example
 
 ```shell
 curl "https://inscribe.education/api/<organization>/v1/communities/6538074649526272"
@@ -192,15 +197,11 @@ curl "https://inscribe.education/api/<organization>/v1/communities/6538074649526
         "lastModified": "2018-06-22T08:23:57-06:00"
     }
 ```
-
-
-
-
-# Create and Enroll a User in a Organization and Community
+# User
 
 Creates a user and adds them to the Organization and Community in the request. Additionally, will perform any default system enrollments for the user if needed. This endpoint can be safely called multiple times and the user will not be duplicated or have duplicate enrollments.
 
-## Get All ConversationPreviews in a Community for a User
+## Create and Enroll a User in a Organization and Community
 
 `GET https://inscribe.education/api/<organization>/v1/communities/<communityid>/users`
 
@@ -230,7 +231,7 @@ communityid | The identifier for the community in which you are getting conversa
 }
 ```
 
-
+### Example
 
 ```shell
 curl  -d '{ "externalId": "54464651615", "externalIdType": "external-system-name", "email": "matt@inscribeapp.com", "screenName": "Matt", "realName": "Matt Self", "avatarUrl": "https://test123123.com/photo.jpg" }' -X POST "https://inscribe.education/api/crafted/v1/communities/12341234/users" -H "Content-Type: application/json" -H "Authorization: Bearer TOKENHERE"
@@ -242,6 +243,7 @@ curl  -d '{ "externalId": "54464651615", "externalIdType": "external-system-name
 ```
 Location: https://inscribe.education/api/crafted/v1/communities/12341234/users/3434542345
 ```
+
 
 # User's Conversation Previews
 
@@ -267,7 +269,7 @@ communityid | The identifier for the community in which you are getting conversa
 userid | The user identifier context in which the conversation previews are relevant
 channelSlugName | Querystring param. Using the slug name of the channel the results can be filtered
 
-
+### Example
 
 ```shell
 curl "https://inscribe.education/api/crafted/v1/communities/12341234/users/1324134/conversationpreviews"
@@ -310,7 +312,7 @@ curl "https://inscribe.education/api/crafted/v1/communities/12341234/users/13241
 
 # Conversation Previews
 
-Conversations contain two types: 'question' and 'sharepost'. Both are returned in generalized json structure, but the types are returned (in "conversationType") in case there is a need to treat them differently.
+This is a non-user specific view of conversations. Conversations contain two types: 'question' and 'sharepost'. Both are returned in generalized json structure, but the types are returned (in "conversationType") in case there is a need to treat them differently.
 
 ## Get All ConversationPreviews in a Community
 
@@ -332,6 +334,7 @@ communityid | The identifier for the community in which you are getting conversa
 channelSlugName | Querystring param. Using the slug name of the channel the results can be filtered
 
 
+### Example
 
 ```shell
 curl "https://inscribe.education/api/crafted/v1/communities/12341234/conversationpreviews"
@@ -392,6 +395,7 @@ channelSlugName | Querystring param. Using the slug name of the channel the resu
 
 
 
+### Example
 
 ```shell
 curl "https://inscribe.education/api/crafted/v1/communities/6538074649526272/resourcepreviews"
