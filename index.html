@@ -244,10 +244,10 @@
               </ul>
           </li>
           <li>
-            <a href="#create-and-enroll-a-user-in-a-organization-and-community" class="toc-h1 toc-link" data-title="Create and Enroll a User in a Organization and Community">Create and Enroll a User in a Organization and Community</a>
+            <a href="#user" class="toc-h1 toc-link" data-title="User">User</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-conversationpreviews-in-a-community-for-a-user" class="toc-h2 toc-link" data-title="Get All ConversationPreviews in a Community for a User">Get All ConversationPreviews in a Community for a User</a>
+                    <a href="#create-and-enroll-a-user-in-a-organization-and-community" class="toc-h2 toc-link" data-title="Create and Enroll a User in a Organization and Community">Create and Enroll a User in a Organization and Community</a>
                   </li>
               </ul>
           </li>
@@ -255,7 +255,7 @@
             <a href="#user-39-s-conversation-previews" class="toc-h1 toc-link" data-title="User's Conversation Previews">User's Conversation Previews</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-conversationpreviews-in-a-community-for-a-user-2" class="toc-h2 toc-link" data-title="Get All ConversationPreviews in a Community for a User">Get All ConversationPreviews in a Community for a User</a>
+                    <a href="#get-all-conversationpreviews-in-a-community-for-a-user" class="toc-h2 toc-link" data-title="Get All ConversationPreviews in a Community for a User">Get All ConversationPreviews in a Community for a User</a>
                   </li>
               </ul>
           </li>
@@ -394,7 +394,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <td>Your organization name key</td>
 </tr>
 </tbody></table>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/&lt;organization&gt;/v1/communities"</span>
+<h3 id='example'>Example</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/&lt;organization&gt;/v1/communities"</span>
   -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
 </code></pre>
 <blockquote>
@@ -442,7 +442,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <td>The ID of the community to retrieve</td>
 </tr>
 </tbody></table>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/&lt;organization&gt;/v1/communities/6538074649526272"</span>
+<h3 id='example-2'>Example</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/&lt;organization&gt;/v1/communities/6538074649526272"</span>
   -X GET
   -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
 </code></pre>
@@ -459,9 +459,9 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
         </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-22T08:23:57-06:00"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-22T08:23:57-06:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='create-and-enroll-a-user-in-a-organization-and-community'>Create and Enroll a User in a Organization and Community</h1>
+</span></code></pre><h1 id='user'>User</h1>
 <p>Creates a user and adds them to the Organization and Community in the request. Additionally, will perform any default system enrollments for the user if needed. This endpoint can be safely called multiple times and the user will not be duplicated or have duplicate enrollments.</p>
-<h2 id='get-all-conversationpreviews-in-a-community-for-a-user'>Get All ConversationPreviews in a Community for a User</h2>
+<h2 id='create-and-enroll-a-user-in-a-organization-and-community'>Create and Enroll a User in a Organization and Community</h2>
 <p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/users</code></p>
 <h3 id='header-parameters-3'>Header Parameters</h3>
 <table><thead>
@@ -506,7 +506,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
   "realName": "Matt Self",
   "avatarUrl": "https://lh4.googleusercontent.com/-gw3Csqy36fI/AAAAAAAAAAI/AAAAAAAAABM/widlaNMKU74/photo.jpg"
 }
-</code></pre><pre class="highlight shell tab-shell"><code>curl  -d <span class="s1">'{ "externalId": "54464651615", "externalIdType": "external-system-name", "email": "matt@inscribeapp.com", "screenName": "Matt", "realName": "Matt Self", "avatarUrl": "https://test123123.com/photo.jpg" }'</span> -X POST <span class="s2">"https://inscribe.education/api/crafted/v1/communities/12341234/users"</span> -H <span class="s2">"Content-Type: application/json"</span> -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
+</code></pre><h3 id='example-3'>Example</h3><pre class="highlight shell tab-shell"><code>curl  -d <span class="s1">'{ "externalId": "54464651615", "externalIdType": "external-system-name", "email": "matt@inscribeapp.com", "screenName": "Matt", "realName": "Matt Self", "avatarUrl": "https://test123123.com/photo.jpg" }'</span> -X POST <span class="s2">"https://inscribe.education/api/crafted/v1/communities/12341234/users"</span> -H <span class="s2">"Content-Type: application/json"</span> -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
 
 </code></pre>
 <blockquote>
@@ -515,7 +515,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <pre class="highlight plaintext"><code>Location: https://inscribe.education/api/crafted/v1/communities/12341234/users/3434542345
 </code></pre><h1 id='user-39-s-conversation-previews'>User&#39;s Conversation Previews</h1>
 <p>Conversations contain two types: &#39;question&#39; and &#39;sharepost&#39;. Both are returned in generalized json structure, but the types are returned (in &quot;conversationType&quot;) in case there is a need to treat them differently.</p>
-<h2 id='get-all-conversationpreviews-in-a-community-for-a-user-2'>Get All ConversationPreviews in a Community for a User</h2>
+<h2 id='get-all-conversationpreviews-in-a-community-for-a-user'>Get All ConversationPreviews in a Community for a User</h2>
 <p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/users/&lt;userid&gt;/conversationpreviews?channelSlugName=&lt;channelSlugName&gt;</code></p>
 <h3 id='header-parameters-4'>Header Parameters</h3>
 <table><thead>
@@ -560,7 +560,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <td>Querystring param. Using the slug name of the channel the results can be filtered</td>
 </tr>
 </tbody></table>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/crafted/v1/communities/12341234/users/1324134/conversationpreviews"</span>
+<h3 id='example-4'>Example</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/crafted/v1/communities/12341234/users/1324134/conversationpreviews"</span>
   -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
 </code></pre>
 <blockquote>
@@ -594,7 +594,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 </span><span class="p">]</span><span class="w">
 
 </span></code></pre><h1 id='conversation-previews'>Conversation Previews</h1>
-<p>Conversations contain two types: &#39;question&#39; and &#39;sharepost&#39;. Both are returned in generalized json structure, but the types are returned (in &quot;conversationType&quot;) in case there is a need to treat them differently.</p>
+<p>This is a non-user specific view of conversations. Conversations contain two types: &#39;question&#39; and &#39;sharepost&#39;. Both are returned in generalized json structure, but the types are returned (in &quot;conversationType&quot;) in case there is a need to treat them differently.</p>
 <h2 id='get-all-conversationpreviews-in-a-community'>Get All ConversationPreviews in a Community</h2>
 <p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/conversationpreviews?channelSlugName=&lt;channelSlugName&gt;</code></p>
 <h3 id='header-parameters-5'>Header Parameters</h3>
@@ -636,7 +636,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <td>Querystring param. Using the slug name of the channel the results can be filtered</td>
 </tr>
 </tbody></table>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/crafted/v1/communities/12341234/conversationpreviews"</span>
+<h3 id='example-5'>Example</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/crafted/v1/communities/12341234/conversationpreviews"</span>
   -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
 </code></pre>
 <blockquote>
@@ -708,7 +708,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <td>Querystring param. Using the slug name of the channel the results can be filtered</td>
 </tr>
 </tbody></table>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/crafted/v1/communities/6538074649526272/resourcepreviews"</span>
+<h3 id='example-6'>Example</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/crafted/v1/communities/6538074649526272/resourcepreviews"</span>
   -X GET
   -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
 </code></pre>
