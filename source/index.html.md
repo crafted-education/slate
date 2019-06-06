@@ -267,7 +267,7 @@ Parameter | Description
 organization | The short name (key) for your organization
 communityid | The identifier for the community in which you are getting conversationpreviews
 userid | The user identifier context in which the conversation previews are relevant
-categoryKey | [optional] Querystring param. The topic(s) in which results should be filtered. If not provided, results will not be filtered by topic.
+topicSlug | [optional] Querystring param. The topic(s) in which results should be filtered. If not provided, results will not be filtered by topic.
 channelSlugName | [optional] Querystring param. Using the slug name of the channel the results can be filtered. If not provided, results will be limitted to channels in which the user has subscribed.
 
 ### Example
@@ -332,7 +332,7 @@ Parameter | Description
 --------- | -----------
 organization | The short name (key) for your organization
 communityid | The identifier for the community in which you are getting conversationpreviews
-categoryKey | [optional] Querystring param. The topic(s) in which results should be filtered
+topicSlug | [optional] Querystring param. The topic(s) in which results should be filtered
 channelSlugName | [optional] Querystring param. Using the slug name of the channel the results can be filtered
 
 
