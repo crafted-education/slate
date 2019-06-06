@@ -251,7 +251,7 @@ Conversations contain two types: 'question' and 'sharepost'. Both are returned i
 
 ## Get All ConversationPreviews in a Community for a User
 
-`GET https://inscribe.education/api/<organization>/v1/communities/<communityid>/users/<userid>/conversationpreviews?channelSlugName=<channelSlugName>`
+`GET https://inscribe.education/api/<organization>/v1/communities/<communityid>/users/<userid>/conversationpreviews`
 
 ### Header Parameters
 
@@ -267,7 +267,8 @@ Parameter | Description
 organization | The short name (key) for your organization
 communityid | The identifier for the community in which you are getting conversationpreviews
 userid | The user identifier context in which the conversation previews are relevant
-channelSlugName | Querystring param. Using the slug name of the channel the results can be filtered
+categoryKey | [optional] Querystring param. The topic(s) in which results should be filtered. If not provided, results will not be filtered by topic.
+channelSlugName | [optional] Querystring param. Using the slug name of the channel the results can be filtered. If not provided, results will be limitted to channels in which the user has subscribed.
 
 ### Example
 
@@ -331,7 +332,8 @@ Parameter | Description
 --------- | -----------
 organization | The short name (key) for your organization
 communityid | The identifier for the community in which you are getting conversationpreviews
-channelSlugName | Querystring param. Using the slug name of the channel the results can be filtered
+categoryKey | [optional] Querystring param. The topic(s) in which results should be filtered
+channelSlugName | [optional] Querystring param. Using the slug name of the channel the results can be filtered
 
 
 ### Example
