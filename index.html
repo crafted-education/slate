@@ -244,6 +244,22 @@
               </ul>
           </li>
           <li>
+            <a href="#create-and-enroll-a-user-in-a-organization-and-community" class="toc-h1 toc-link" data-title="Create and Enroll a User in a Organization and Community">Create and Enroll a User in a Organization and Community</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-conversationpreviews-in-a-community-for-a-user" class="toc-h2 toc-link" data-title="Get All ConversationPreviews in a Community for a User">Get All ConversationPreviews in a Community for a User</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#user-39-s-conversation-previews" class="toc-h1 toc-link" data-title="User's Conversation Previews">User's Conversation Previews</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-conversationpreviews-in-a-community-for-a-user-2" class="toc-h2 toc-link" data-title="Get All ConversationPreviews in a Community for a User">Get All ConversationPreviews in a Community for a User</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#conversation-previews" class="toc-h1 toc-link" data-title="Conversation Previews">Conversation Previews</a>
               <ul class="toc-list-h2">
                   <li>
@@ -443,10 +459,10 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
         </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-22T08:23:57-06:00"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-22T08:23:57-06:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='conversation-previews'>Conversation Previews</h1>
-<p>Conversations contain two types: &#39;question&#39; and &#39;sharepost&#39;. Both are returned in generalized json structure, but the types are returned (in &quot;conversationType&quot;) in case there is a need to treat them differently.</p>
-<h2 id='get-all-conversationpreviews-in-a-community'>Get All ConversationPreviews in a Community</h2>
-<p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/conversationpreviews?channelSlugName=&lt;channelSlugName&gt;</code></p>
+</span></code></pre><h1 id='create-and-enroll-a-user-in-a-organization-and-community'>Create and Enroll a User in a Organization and Community</h1>
+<p>Creates a user and adds them to the Organization and Community in the request. Additionally, will perform any default system enrollments for the user if needed. This endpoint can be safely called multiple times and the user will not be duplicated or have duplicate enrollments.</p>
+<h2 id='get-all-conversationpreviews-in-a-community-for-a-user'>Get All ConversationPreviews in a Community for a User</h2>
+<p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/users</code></p>
 <h3 id='header-parameters-3'>Header Parameters</h3>
 <table><thead>
 <tr>
@@ -467,6 +483,140 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 </tr>
 </tbody></table>
 <h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>organization</td>
+<td>The short name (key) for your organization</td>
+</tr>
+<tr>
+<td>communityid</td>
+<td>The identifier for the community in which you are getting conversationpreviews</td>
+</tr>
+</tbody></table>
+<h3 id='post-parameters'>POST Parameters</h3><pre class="highlight plaintext"><code>{
+  "externalId": "54464651615",
+  "externalIdType": "external-system-name",
+  "email": "matt@inscribeapp.com",
+  "screenName": "Matt",
+  "realName": "Matt Self",
+  "avatarUrl": "https://lh4.googleusercontent.com/-gw3Csqy36fI/AAAAAAAAAAI/AAAAAAAAABM/widlaNMKU74/photo.jpg"
+}
+</code></pre><pre class="highlight shell tab-shell"><code>curl  -d <span class="s1">'{ "externalId": "54464651615", "externalIdType": "external-system-name", "email": "matt@inscribeapp.com", "screenName": "Matt", "realName": "Matt Self", "avatarUrl": "https://test123123.com/photo.jpg" }'</span> -X POST <span class="s2">"https://inscribe.education/api/crafted/v1/communities/12341234/users"</span> -H <span class="s2">"Content-Type: application/json"</span> -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
+
+</code></pre>
+<blockquote>
+<p>The above command returns a location header containing the url for the newly created user (with a userid):</p>
+</blockquote>
+<pre class="highlight plaintext"><code>Location: https://inscribe.education/api/crafted/v1/communities/12341234/users/3434542345
+</code></pre><h1 id='user-39-s-conversation-previews'>User&#39;s Conversation Previews</h1>
+<p>Conversations contain two types: &#39;question&#39; and &#39;sharepost&#39;. Both are returned in generalized json structure, but the types are returned (in &quot;conversationType&quot;) in case there is a need to treat them differently.</p>
+<h2 id='get-all-conversationpreviews-in-a-community-for-a-user-2'>Get All ConversationPreviews in a Community for a User</h2>
+<p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/users/&lt;userid&gt;/conversationpreviews?channelSlugName=&lt;channelSlugName&gt;</code></p>
+<h3 id='header-parameters-4'>Header Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>none</td>
+<td>Bearer TOKENHERE</td>
+</tr>
+<tr>
+<td>Range</td>
+<td>none</td>
+<td>entities=&lt;range-start&gt;-&lt;range-end&gt;</td>
+</tr>
+</tbody></table>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>organization</td>
+<td>The short name (key) for your organization</td>
+</tr>
+<tr>
+<td>communityid</td>
+<td>The identifier for the community in which you are getting conversationpreviews</td>
+</tr>
+<tr>
+<td>userid</td>
+<td>The user identifier context in which the conversation previews are relevant</td>
+</tr>
+<tr>
+<td>channelSlugName</td>
+<td>Querystring param. Using the slug name of the channel the results can be filtered</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://inscribe.education/api/crafted/v1/communities/12341234/users/1324134/conversationpreviews"</span>
+  -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How do I make changes to my FAFSA form?"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bodyText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How do I make changes to my FAFSA form? I made a mistake when I submitted the FAFSA form. How do I make changes?"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"authorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"authorAvatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://inscribe.education/avatar/1234.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"conversationType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"question"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"upVotesCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"viewsCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"responsesCount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"datePosted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-31T14:53:02Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dateEdited"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My techniques for success in online classes"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bodyText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I've found that being organized and prepared has really helped."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"authorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JG"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"authorAvatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://inscribe.education/avatar/1234.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"conversationType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sharepost"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"upVotesCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"viewsCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"responsesCount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"datePosted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-31T15:09:34Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dateEdited"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001-01-01T00:00:00Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre><h1 id='conversation-previews'>Conversation Previews</h1>
+<p>Conversations contain two types: &#39;question&#39; and &#39;sharepost&#39;. Both are returned in generalized json structure, but the types are returned (in &quot;conversationType&quot;) in case there is a need to treat them differently.</p>
+<h2 id='get-all-conversationpreviews-in-a-community'>Get All ConversationPreviews in a Community</h2>
+<p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/conversationpreviews?channelSlugName=&lt;channelSlugName&gt;</code></p>
+<h3 id='header-parameters-5'>Header Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>none</td>
+<td>Bearer TOKENHERE</td>
+</tr>
+<tr>
+<td>Range</td>
+<td>none</td>
+<td>entities=&lt;range-start&gt;-&lt;range-end&gt;</td>
+</tr>
+</tbody></table>
+<h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -519,7 +669,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <p>This endpoint retrieves resourcepreviews in a community</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/conversationpreviews?channelSlugName=&lt;channelSlugName&gt;</code></p>
-<h3 id='header-parameters-4'>Header Parameters</h3>
+<h3 id='header-parameters-6'>Header Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -538,7 +688,7 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <td>entities=&lt;range-start&gt;-&lt;range-end&gt;</td>
 </tr>
 </tbody></table>
-<h3 id='url-parameters-4'>URL Parameters</h3>
+<h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
