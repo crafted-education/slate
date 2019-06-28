@@ -431,3 +431,68 @@ curl "https://inscribe.education/api/crafted/v1/communities/6538074649526272/res
 ```
 
 
+
+# Conversation Details
+
+Conversation Detail contain two types: 'question' and 'sharepost'. Both are returned in generalized json structure, but the types are returned (in "conversationType") in case there is a need to treat them differently.
+
+## Get a single ConversationDetail in a Community by ID
+
+`GET https://inscribe.education/api/<organization>/v1/communities/<communityid>/users/<userid>/conversationdetails/<conversationtype>/<conversationid>`
+
+### Header Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+Authorization | none | Bearer TOKENHERE
+Range | none | entities=&lt;range-start&gt;-&lt;range-end&gt;
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+organization | The short name (key) for your organization
+communityid | The identifier for the community in which you are getting conversationpreviews
+userid | The user identifier context in which the conversation previews are relevant
+conversationType | The type of conversation: Either question or sharepost.
+conversationId | The id of the conversation to get details of.
+
+### Example
+
+```shell
+curl "https://inscribe.education/api/pearson/v1/communities/1234/users/12351234/conversationdetails/question/"
+  -H "Authorization: Bearer TOKENHERE"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "title": "testing embedded content",
+    "bodyHtml": "<article> <h1>testing</h1> <div> <p>here is an image:</p><p>a bullet list:</p><ul><li>list item</li><li>list item</li><li>list item</li></ul> </div> </article>",
+    "authorName": "Matt S",
+    "authorAvatarUrl": "https://lh6.googleusercontent.com/-v4EGvrKXWIc/AAAAAAAAAAI/AAAAAAAAKM0/8_3b6gSrbag/photo.jpg",
+    "conversationType": "question",
+    "conversationId": 12341234,
+    "conversationViewUrl": "https://inscribe.education/main/crafted/4352/questions/2345",
+    "upVotesCount": 0,
+    "viewsCount": 1,
+    "responsesCount": 1,
+    "datePosted": "2019-06-27T18:02:13Z",
+    "dateEdited": "0001-01-01T00:00:00Z",
+    "conversationResponses": [
+        {
+            "bodyHtml": "<p>A response</p>",
+            "authorName": "Matt S",
+            "authorAvatarUrl": "https://lh4.googleusercontent.com/-adf/AAAAAAAAAAI/AAAAAAAAABM/asdf/photo.jpg",
+            "conversationType": "answer",
+            "conversationId": 7890789025342453,
+            "upVotesCount": 0,
+            "datePosted": "2019-06-28T20:43:12Z",
+            "dateEdited": "2019-06-28T20:43:12Z"
+        }
+    ]
+}
+
+```
+
