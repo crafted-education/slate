@@ -460,7 +460,7 @@ conversationId | The id of the conversation to get details of.
 ### Example
 
 ```shell
-curl "https://inscribe.education/api/pearson/v1/communities/1234/users/12351234/conversationdetails/question/"
+curl "https://inscribe.education/api/pearson/v1/communities/1234/users/12351234/conversationdetails/question/1234"
   -H "Authorization: Bearer TOKENHERE"
 ```
 
@@ -494,5 +494,52 @@ curl "https://inscribe.education/api/pearson/v1/communities/1234/users/12351234/
     ]
 }
 
+```
+
+
+# Conversation Responses
+
+Creating Conversation Responses are responses to a particular conversation. These can be created by POSTing to the conversation response endpoint
+
+## Add a response to a conversation. Creates a new response for the conversation that is identified in the type and id.
+
+`POST https://inscribe.education/api/<organization>/v1/communities/<communityid>/users/<userid>/conversationdetails/<conversationtype>/<conversationid>/responses`
+
+### Header Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+Authorization | none | Bearer TOKENHERE
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+organization | The short name (key) for your organization
+communityid | The identifier for the community in which you are getting conversationpreviews
+userid | The user identifier context in which the conversation previews are relevant
+conversationType | The type of conversation: Either question or sharepost.
+conversationId | The id of the conversation to get details of.
+
+### POST Parameters
+```
+       {
+            "bodyHtml": "<p>Test response! </p>",
+            "authorId": 6750868670045746
+        }
+
+```
+
+### Example
+
+```shell
+curl  -d '{ "bodyHtml": "blah blah", "authorId": "1234" }' -X POST "https://inscribe.education/api/pearson/v1/communities/1234/users/12351234/conversationdetails/question/responses" -H "Content-Type: application/json" -H "Authorization: Bearer TOKENHERE"
+
+```
+
+> The above command returns a location header containing the url for the newly created user (with a userid):
+
+```
+Location: https://inscribe.education/api/crafted/v1/communities/12341234/users/3434542345/conversationdetails/question/responses/1234
 ```
 
