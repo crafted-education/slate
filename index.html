@@ -281,6 +281,9 @@
                   <li>
                     <a href="#get-a-single-conversationdetail-in-a-community-by-id" class="toc-h2 toc-link" data-title="Get a single ConversationDetail in a Community by ID">Get a single ConversationDetail in a Community by ID</a>
                   </li>
+                  <li>
+                    <a href="#create-new-conversation-question-or-sharepost" class="toc-h2 toc-link" data-title="Create new conversation (question or sharepost)">Create new conversation (question or sharepost)</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -843,10 +846,8 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h1 id='conversation-responses'>Conversation Responses</h1>
-<p>Creating Conversation Responses are responses to a particular conversation. These can be created by POSTing to the conversation response endpoint</p>
-<h2 id='add-a-response-to-a-conversation-creates-a-new-response-for-the-conversation-that-is-identified-in-the-type-and-id'>Add a response to a conversation. Creates a new response for the conversation that is identified in the type and id.</h2>
-<p><code>POST https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/users/&lt;userid&gt;/conversationdetails/&lt;conversationtype&gt;/&lt;conversationid&gt;/responses</code></p>
+</span></code></pre><h2 id='create-new-conversation-question-or-sharepost'>Create new conversation (question or sharepost)</h2>
+<p><code>POST https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/users/&lt;userid&gt;/conversationdetails/&lt;conversationtype&gt;</code></p>
 <h3 id='header-parameters-8'>Header Parameters</h3>
 <table><thead>
 <tr>
@@ -878,7 +879,61 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 </tr>
 <tr>
 <td>userid</td>
-<td>The user identifier context in which the conversation previews are relevant</td>
+<td>The user posting the conversation</td>
+</tr>
+<tr>
+<td>conversationType</td>
+<td>The type of conversation: Either question or sharepost.</td>
+</tr>
+</tbody></table>
+<h3 id='post-parameters-2'>POST Parameters</h3><pre class="highlight plaintext"><code>       {
+            "bodyHtml": "&lt;p&gt;Test share post! &lt;/p&gt;",
+            "authorId": 6750868670045746
+        }
+
+</code></pre><h3 id='example-8'>Example</h3><pre class="highlight shell tab-shell"><code>curl  -d <span class="s1">'{ "bodyHtml": "blah blah", "authorId": "1234" }'</span> -X POST <span class="s2">"https://inscribe.education/api/pearson/v1/communities/1234/users/12351234/conversationdetails/question"</span> -H <span class="s2">"Content-Type: application/json"</span> -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
+
+</code></pre>
+<blockquote>
+<p>The above command returns a location header containing the url for the newly created user (with a userid):</p>
+</blockquote>
+<pre class="highlight plaintext"><code>Location: https://inscribe.education/api/crafted/v1/communities/12341234/users/3434542345/conversationdetails/question/12332333
+</code></pre><h1 id='conversation-responses'>Conversation Responses</h1>
+<p>Creating Conversation Responses are responses to a particular conversation. These can be created by POSTing to the conversation response endpoint</p>
+<h2 id='add-a-response-to-a-conversation-creates-a-new-response-for-the-conversation-that-is-identified-in-the-type-and-id'>Add a response to a conversation. Creates a new response for the conversation that is identified in the type and id.</h2>
+<p><code>POST https://inscribe.education/api/&lt;organization&gt;/v1/communities/&lt;communityid&gt;/users/&lt;userid&gt;/conversationdetails/&lt;conversationtype&gt;/&lt;conversationid&gt;/responses</code></p>
+<h3 id='header-parameters-9'>Header Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>none</td>
+<td>Bearer TOKENHERE</td>
+</tr>
+</tbody></table>
+<h3 id='url-parameters-9'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>organization</td>
+<td>The short name (key) for your organization</td>
+</tr>
+<tr>
+<td>communityid</td>
+<td>The identifier for the community in which you are getting conversationpreviews</td>
+</tr>
+<tr>
+<td>userid</td>
+<td>The user posting the response</td>
 </tr>
 <tr>
 <td>conversationType</td>
@@ -889,12 +944,12 @@ You must replace <code>TOKENHERE</code> with the token you received from the aut
 <td>The id of the conversation to get details of.</td>
 </tr>
 </tbody></table>
-<h3 id='post-parameters-2'>POST Parameters</h3><pre class="highlight plaintext"><code>       {
+<h3 id='post-parameters-3'>POST Parameters</h3><pre class="highlight plaintext"><code>       {
             "bodyHtml": "&lt;p&gt;Test response! &lt;/p&gt;",
             "authorId": 6750868670045746
         }
 
-</code></pre><h3 id='example-8'>Example</h3><pre class="highlight shell tab-shell"><code>curl  -d <span class="s1">'{ "bodyHtml": "blah blah", "authorId": "1234" }'</span> -X POST <span class="s2">"https://inscribe.education/api/pearson/v1/communities/1234/users/12351234/conversationdetails/question/responses"</span> -H <span class="s2">"Content-Type: application/json"</span> -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
+</code></pre><h3 id='example-9'>Example</h3><pre class="highlight shell tab-shell"><code>curl  -d <span class="s1">'{ "bodyHtml": "blah blah", "authorId": "1234" }'</span> -X POST <span class="s2">"https://inscribe.education/api/pearson/v1/communities/1234/users/12351234/conversationdetails/question/responses"</span> -H <span class="s2">"Content-Type: application/json"</span> -H <span class="s2">"Authorization: Bearer TOKENHERE"</span>
 
 </code></pre>
 <blockquote>
