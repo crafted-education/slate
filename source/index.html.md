@@ -241,9 +241,6 @@ screenName | yes | If not provided the users email address name part will be use
 realName | no | The users name
 
 
-
-external
-
 ### Example
 
 ```shell
