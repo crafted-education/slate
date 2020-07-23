@@ -101,7 +101,7 @@ InScribe expects the API Token (from the authentication call) to be included in 
 You must replace <code>TOKENHERE</code> with the token you received from the authentication call.
 </aside>
 
-
+NOTE: Tokens will expire. It is recommended that you get a new token before each group of API interactions or session.
 
 
 # Communities
@@ -225,16 +225,29 @@ communityid | The identifier for the community in which you are getting conversa
   "externalId": "54464651615",
   "externalIdType": "external-system-name",
   "email": "matt@inscribeapp.com",
+  "notificationEmail": "matt53@gmail.com",
   "screenName": "Matt",
-  "realName": "Matt Self",
-  "avatarUrl": "https://lh4.googleusercontent.com/-gw3Csqy36fI/AAAAAAAAAAI/AAAAAAAAABM/widlaNMKU74/photo.jpg"
+  "realName": "Matt Self"
 }
 ```
+
+JSON Post Params | Required | Description
+--------- | ------- | -----------
+externalId | yes | A unique identifier in your system
+externalIdType | yes | An identifier for your system. Please reach out and we'll help ensure that this value is appropriate.
+email | yes | The users primary email address
+notificationEmail | no | An additional email used if notifications should go to a different address than the system email account
+screenName | yes | If not provided the users email address name part will be used
+realName | no | The users name
+
+
+
+external
 
 ### Example
 
 ```shell
-curl  -d '{ "externalId": "54464651615", "externalIdType": "external-system-name", "email": "matt@inscribeapp.com", "screenName": "Matt", "realName": "Matt Self", "avatarUrl": "https://test123123.com/photo.jpg" }' -X POST "https://inscribe.education/api/crafted/v1/communities/12341234/users" -H "Content-Type: application/json" -H "Authorization: Bearer TOKENHERE"
+curl  -d '{ "externalId": "54464651615", "externalIdType": "external-system-name", "email": "matt@inscribeapp.com", "notificationEmail": "matt53@gmail.com", "screenName": "Matt", "realName": "Matt Self" }' -X POST "https://inscribe.education/api/crafted/v1/communities/12341234/users" -H "Content-Type: application/json" -H "Authorization: Bearer TOKENHERE"
 
 ```
 
